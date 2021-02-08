@@ -7,6 +7,7 @@ searchBtn.addEventListener("click", ()=>{
 
     const displayMeal = meals => {
         let mealsDiv = document.getElementById("meals");
+        mealsDiv.innerHTML = '';
     meals.forEach(meal => {
         let mealDiv = document.createElement("div");
         mealDiv.className = "meal";
