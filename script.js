@@ -1,7 +1,7 @@
 const searchBtn = document.getElementById("search-btn");
 searchBtn.addEventListener("click", ()=>{
     let searchInputTxt = document.getElementById("searchInput").value;
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInputTxt}`)
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputTxt}`)
     .then(res => res.json())
     .then(data => displayMeal(data.meals))
 
