@@ -1,11 +1,11 @@
-let searchBtn = document.getElementById("search-btn");
+const searchBtn = document.getElementById("search-btn");
 searchBtn.addEventListener("click", ()=>{
     let searchInputTxt = document.getElementById("searchInput").value;
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInputTxt}`)
     .then(res => res.json())
     .then(data => displayMeal(data.meals))
 
-    let displayMeal = meals => {
+    const displayMeal = meals => {
         let mealsDiv = document.getElementById("meals");
     meals.forEach(meal => {
         let mealDiv = document.createElement("div");
@@ -25,15 +25,14 @@ searchBtn.addEventListener("click", ()=>{
 })
 
 
-let displayMealDetails = meal =>{
+const displayMealDetails = meal =>{
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${meal}`)
     .then(res => res.json())
     .then(data => renderMealDetails(data.meals[0]))
 }
 
 
-let renderMealDetails = meal =>{
-    console.log(meal)
+const renderMealDetails = meal =>{
     let mealDetailDiv = document.getElementById("mealDetails");
     mealDetailDiv.innerHTML = `
     <img class="rounded" src="${meal.strMealThumb}">
