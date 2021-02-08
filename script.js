@@ -14,7 +14,7 @@ searchBtn.addEventListener("click", ()=>{
         let mealInfo = `
         <img class="rounded" src="${meal.strMealThumb}">
         <h3 class="mealName">${meal.strMeal}</h3>
-        <button onclick="displayMealDetails('${meal.strMeal}')">Details</button>
+        <button class="btn btn-info" onclick="displayMealDetails('${meal.strMeal}')">Details</button>
         `;
         mealDiv.innerHTML = mealInfo;
          mealsDiv.appendChild(mealDiv);
