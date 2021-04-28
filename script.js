@@ -1,6 +1,7 @@
 const searchBtn = document.getElementById("search-btn");
 searchBtn.addEventListener("click", ()=>{
     let searchInputTxt = document.getElementById("searchInput").value;
+    spinLoading();
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputTxt}`)
     .then(res => res.json())
     .then(data => displayMeal(data.meals))
@@ -19,11 +20,22 @@ searchBtn.addEventListener("click", ()=>{
         `;
         mealDiv.innerHTML = mealInfo;
          mealsDiv.appendChild(mealDiv);
+        spinLoading();
     });
 
     };
     document.getElementById("searchInput").value = '';
 })
+
+//button keypress function
+        document.getElementById("searchInput")
+        .addEventListener("keypress", function (event) {
+            // event.preventDefault()
+            // console.log(event.key)
+            if (event.key == "Enter") { 
+                document.getElementById("search-btn").click();
+            }
+        });
 
 
 const displayMealDetails = meal =>{
@@ -35,6 +47,7 @@ const displayMealDetails = meal =>{
 
 const renderMealDetails = meal =>{
     let mealDetailDiv = document.getElementById("mealDetails");
+    mealDetailDiv.innerHTML = '';
     mealDetailDiv.innerHTML = `
     <img class="rounded" src="${meal.strMealThumb}">
     <h3 class="mealDetails">${meal.strMeal}</h3>
@@ -51,6 +64,11 @@ const renderMealDetails = meal =>{
     `
 }
 
+const spinLoading = () => {
+    const spinner = document.getElementById('spinner')
+    const meals = document.getElementById('meals')
+    spinner.classList.toggle('d-none')
+    meals.classList.toggle('d-none')
+}
 
 
-{/* <button onclick="displayMealDetails('${meal.strMeal}')">Details</button> */}
